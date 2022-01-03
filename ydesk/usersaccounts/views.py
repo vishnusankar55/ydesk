@@ -12,7 +12,7 @@ from django.template import Context
 
 #################### index#######################################
 def index(request):
-	return render(request, 'usersaccounts/index.html', {'title':'index'})
+	return render(request, 'index.html', {'title':'index'})
 
 ########### register here #####################################
 def register(request):
@@ -23,7 +23,7 @@ def register(request):
 			username = form.cleaned_data.get('username')
 			email = form.cleaned_data.get('email')
 			######################### mail system ####################################
-			htmly = get_template('usersaccounts/Email.html')
+			htmly = get_template('Email.html')
 			d = { 'username': username }
 			subject, from_email, to = 'welcome', 'your_email@gmail.com', email
 			html_content = htmly.render(d)
@@ -35,7 +35,7 @@ def register(request):
 			return redirect('login')
 	else:
 		form = UserRegisterForm()
-	return render(request, 'usersaccounts/register.html', {'form': form, 'title':'reqister here'})
+	return render(request, 'register.html', {'form': form, 'title':'reqister here'})
 
 ################ login forms###################################################
 def Login(request):
@@ -53,5 +53,5 @@ def Login(request):
         else:
             messages.info(request, f'account done not exit plz sign in')
     form = AuthenticationForm()
-    return render(request, 'usersaccounts/login.html', {'form':form, 'title':'log in'})
+    return render(request, 'login.html', {'form':form, 'title':'log in'})
 
